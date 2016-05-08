@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<h1>Chat slack</h1>
+			<div id="app">
+
+			</div>
+
+			<div class="col-md-8">
+				<div class="bs-example" data-example-id="default-media"> 
+
+
+					<div class="media" v-for="message in messages"> 
+						<div class="media-left"> 
+							<a href="#"> 
+								<img class="media-object" src="http://cps-static.rovicorp.com/3/JPG_400/MI0003/841/MI0003841828.jpg?partner=allrovi.com" data-holder-rendered="true" style="width: 64px; height: 64px;"> 
+							</a> 
+						</div> 
+						<div class="media-body"> 
+							<h4 class="media-heading">Username <small>{{ message.date | timeFromNow }}</small></h4> 
+							{{{ message.text }}} 
+						</div> 
+					</div>
+				</div> 
+				
+				<br><br>
+				<p>Add a new Message</p>
+				<input type="text" class="form-control" placeholder="Text input" v-model="message" v-on:keyup.enter="addMessage()">
+				<br>
+				<button class="btn btn-primary" v-on:click="addMessage()">Send</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="//cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="js/vue.js"></script>
+	<script src="bower_components/moment/moment.js"></script>
+	<script src="bower_components/vue/dist/vue.min.js"></script>
+
+	<script src="js/config.js"></script>
+	<script src="js/app.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+{
+  "name": "slack",
+  "authors": [
+    "ernesto ponce <ernesto@pigmalionstudios.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.13.0",
+    "vue": "^1.0.22"
+  }
+}
