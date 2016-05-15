@@ -1,5 +1,3 @@
-var firebase = new Firebase(config.firebaseURL);
-var firebaseChild = firebase.child("messages");
 
 // Custom filters
 Vue.filter('timeFromNow', function (value) {
@@ -12,6 +10,7 @@ new Vue({
 	data:{
 		message: '',
 		messages: [],
+		users: [],
 		urlRegex: /(https?:\/\/[^\s]+)/gi
 	},
 
@@ -23,8 +22,15 @@ new Vue({
 			that.messages.push(childSnapshot.val());
 		});
 
+	
 		// Check auth 
 		userGoogle.checkLogin();
+
+		// Get users logged - show on sidebar
+		firebaseUsers.on('child_added', function(snapshot){
+			that.users.push(snapshot.val());
+		});
+
 
 	},
 
@@ -63,6 +69,10 @@ new Vue({
 				this.message = this.message.replace(this.urlRegex, '<br><a href="$1" target="_blank">$1</a><br>');
 
 			}			
+		},
+
+		doLogin: function(){
+			userGoogle.doLogin();
 		}
 
 	}
