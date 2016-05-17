@@ -7,11 +7,12 @@ var userGoogle = {
 	checkLogin: function(){
 		var authData = firebase.getAuth();
 		if (authData) {
-		  this.id     = authData.google.id;
-		  this.username     = authData.google.displayName;
-		  this.profileImage = authData.google.profileImageURL;
+			this.id     = authData.google.id;
+		  	this.username     = authData.google.displayName;
+		  	this.profileImage = authData.google.profileImageURL;
+			return true;
 		} else {
-		  console.log("Redirect to login page");
+			console.log("Redirect to login page");
 		}
 	},
 
@@ -48,10 +49,19 @@ var userGoogle = {
 				    		if(!err) console.log("Success save user");
 				    	});
 			    	}
+
+			    	router.go('/home');
 		    	});
 
 		    	
 		  	}
 		});
+	},
+
+	logout: function(){
+		firebase.unauth();
 	}
+
+
+
 };

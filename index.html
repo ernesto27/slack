@@ -14,13 +14,30 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
+
             <ul class="sidebar-nav" >
+            	<li>
+                    <a href="#home">Home</a>
+                </li>
             	<li class="sidebar-brand">
-                    <a href="#">
-                        Users
+                    <a href="#foo">
+                        {{ usernameLogged }}
                     </a>
                 </li>
-				<li v-for="user in users"><a href="#">{{ user.username }}</a></li>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#login">Login</a>
+                </li>
+                <li>
+                    <a href="#" v-on:click="logout()">Logout</a>
+                </li>
+                <li>Users:</li>
+				<li v-for="user in users">
+					<a href="#foo" >{{ user.username }}</a>
+				</li>
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -30,33 +47,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Chat slack</h1>
-			
-						<button v-on:click="doLogin()">Login google</button>
-
-						<div class="col-md-8">
-							<div class="bs-example" data-example-id="default-media"> 
-
-
-								<div class="media" v-for="message in messages"> 
-									<div class="media-left"> 
-										<a href="#"> 
-											<img class="media-object" src="{{ message.profileImage }}" data-holder-rendered="true" style="width: 64px; height: 64px;"> 
-										</a> 
-									</div> 
-									<div class="media-body"> 
-										<h4 class="media-heading">{{ message.username }} <small>{{ message.date | timeFromNow }}</small></h4> 
-										{{{ message.text }}} 
-									</div> 
-								</div>
-							</div> 
-							
-							<br><br>
-							<p>Add a new Message</p>
-							<input type="text" class="form-control" placeholder="Text input" v-model="message" v-on:keyup.enter="addMessage()">
-							<br>
-							<button class="btn btn-primary" v-on:click="addMessage()">Send</button>
-						</div>
+                    	<!-- use router-view element as route outlet -->
+  						<router-view></router-view>
                     </div>
                 </div>
             </div>
@@ -64,12 +56,49 @@
         <!-- /#page-content-wrapper -->
 
     </div>
+		
 
+	<!-- TEMPLATES -->
+	<!-- HOME -->
+	<template id="home-template">
+		<h1>Chat slack</h1>
+
+		<div class="col-md-8">
+			<div class="bs-example" data-example-id="default-media"> 
+
+
+				<div class="media" v-for="message in messages"> 
+					<div class="media-left"> 
+						<a href="#"> 
+							<img class="media-object" src="{{ message.profileImage }}" data-holder-rendered="true" style="width: 64px; height: 64px;"> 
+						</a> 
+					</div> 
+					<div class="media-body"> 
+						<h4 class="media-heading">{{ message.username }} <small>{{ message.date | timeFromNow }}</small></h4> 
+						{{{ message.text }}} 
+					</div> 
+				</div>
+			</div> 
+			
+			<br><br>
+			<p>Add a new Message</p>
+			<input type="text" class="form-control" placeholder="Text input" v-model="message" v-on:keyup.enter="addMessage()">
+			<br>
+			<button class="btn btn-primary" v-on:click="addMessage()">Send</button>
+		</div>
+	</template>
+
+	<!-- LOGIN -->
+	<template id="login-template">
+		<div class="col-md-8" style="text-align:center; margin-top:20px">
+			<button class="btn btn-primary" v-on:click="doLogin()">GOOGLE LOGIN</button>
+		</div>
+	</template>
 
 	<script src="//cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-	<script src="js/vue.js"></script>
 	<script src="bower_components/moment/moment.js"></script>
 	<script src="bower_components/vue/dist/vue.min.js"></script>
+	<script src="bower_components/vue-router/dist/vue-router.min.js"></script>
 
 	<script src="js/config.js"></script>
 	<script src="js/userGoogle.js"></script>
